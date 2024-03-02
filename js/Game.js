@@ -4,8 +4,9 @@
 
 
 class Game{
-    // constructor(height, width) {
-    //   this.height = height;
-    //   this.width = width;
-    // }
+  constructor() {
+    this.missed = 0;
+    this.phrases = [];
+    this.activePhrase = null;
+  }
   }
