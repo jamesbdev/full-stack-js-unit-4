@@ -3,7 +3,7 @@
  * Game.js */
 
 class Game {
-  constructor() {
+  constructor(misses, phrases, activePhrase) {
     this.missed = 0;
     this.phrases = [
       new Phrase ("Life is a box of chocolates"),
@@ -18,6 +18,16 @@ class Game {
   getRandomPhrase() {
     const randomIndex = Math.floor(Math.random() * this.phrases.length)
     return this.phrases[randomIndex];
+  }
+
+  startGame() {
+    //hide overlay 
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "none";
+    //get random phrase and add it to the display
+    this.activePhrase = this.getRandomPhrase();
+    this.activePhrase.addPhraseToDisplay();
+
   }
 }
 

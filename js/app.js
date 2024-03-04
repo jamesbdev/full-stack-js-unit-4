@@ -4,20 +4,18 @@
 
 
 
+let game;
+
+const startBtn = document.querySelector("#btn__reset");
+startBtn.addEventListener("click",  () => {
+  let game = new Game();
+  game.startGame();
+})
 
 
-const phrase = new Phrase("hello world");
 
+//phrase.addPhraseToDisplay();
 
-// game.phrases.forEach((phrase, index) => {
-//   console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
-// });
-
-const game = new Game();
-
-const logPhrase = (phrase) => {
-    console.log(`Phrase - phrase` , phrase.phrase)
-}
 
 
 

@@ -6,23 +6,27 @@ class Phrase {
     constructor(phrase){
         this.phrase = phrase.toLowerCase();
    }
-
    /* Display phrase on game board */
-   addPhraseToDisplay(randomPhrase) {
+   addPhraseToDisplay() {
      //get the random phrase 
-     if (typeof randomPhrase === "string") {
         let html = "";
         const phraseList = document.querySelector("#phrase");
-        const letters = randomPhrase.split("");
+        const letters = this.phrase.split("");
         letters.forEach(letter => {
             //check if letter is a space or a letter
-           if (letter !== "") {
+           if (letter !== " ") {
             html += `<li class="hide letter">${letter}</li>`;
            } else {
             html += `<li class="space">${letter}</li>`
            }
         })
-        phraseList.insertAdjacentElement("afterbegin", html);
-     }
-   }  
+        phraseList.innerHTML = html; 
+   } 
+   checkLetter() {
+   
+   }
+
+   showMatchedLetter() {
+
+   }
 }
