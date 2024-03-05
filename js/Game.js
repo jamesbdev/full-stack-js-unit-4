@@ -29,6 +29,22 @@ class Game {
     this.activePhrase.addPhraseToDisplay();
 
   }
+
+  handleInteraction() {
+    
+  }
+
+  checkForWin() {
+
+  }
+
+  removeLife() {
+
+  }
+
+  gameOver() {
+    
+  }
 }
 
 
