@@ -41,6 +41,7 @@ class Game {
       }
       if (this.activePhrase.checkLetter(letter)) {
         this.activePhrase.showMatchedLetter(letter);
+        element.classList.add("chosen");
         //display letter
         this.checkForWin();
         if (this.checkForWin() == true) {
@@ -50,6 +51,9 @@ class Game {
         this.checkForWin();
         //remove heart 
         this.removeLife()
+        //add wrong class to button
+        element.classList.add("wrong");
+  
       }
   
     })
@@ -83,6 +87,7 @@ class Game {
       heartsFull[0].setAttribute("src", "images/lostHeart.png");
     }
     this.missed ++;
+
     if (this.missed >= 5) {
       gameIsOver = true;
     
