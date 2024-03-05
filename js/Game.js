@@ -68,8 +68,10 @@ class Game {
     const displayedLetters = document.querySelectorAll(".show");
 
     if (letters.length == displayedLetters.length) {
-      console.log("you have won the game")
+      console.log("you have won the game");
+      this.gameOver(true);
       return true;
+  
     } else {
       console.log(`there are still ${letters.length - displayedLetters.length} letters to be found`);
       return false;
@@ -80,29 +82,40 @@ class Game {
 //increment the missed counter
 //check if the player has lost
   removeLife() {
-    let gameIsOver = false;
     const heartsFull = document.querySelectorAll('.tries img[src="images/liveHeart.png"]');
     
     if (heartsFull !== undefined) {
       heartsFull[0].setAttribute("src", "images/lostHeart.png");
     }
+    //increment missed variable
     this.missed ++;
 
     if (this.missed >= 5) {
-      gameIsOver = true;
+      this.gameOver(true);
     
     }
-    return gameIsOver;
 
   }
 
-  //display game is over message
+  //displays win screen if player has won
+  //displays loose screen if player lost
   gameOver(gameIsOver) {
+    const overlay = document.querySelector("#overlay");
+    const title = document.querySelector("#game-over-message");
     if (gameIsOver) {
-      console.log("game over");
       //display ending message
+      overlay.classList.add("win");
+      overlay.classList.remove("lose");
+      overlay.classList.remove("start");
+      overlay.style.display = "flex";
+      title.innerHTML = "Congratulations you have won the game!";
     } else {
       console.log(this.missed);
+      overlay.classList.add("lose");
+      overlay.classList.remove("start");
+      overlay.classList.remove("win");
+      overlay.style.display = "flex";
+      title.innerHTML = "You have lost the game, try again!";
     }
   }
 }
