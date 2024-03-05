@@ -34,27 +34,71 @@ class Game {
     const keyboard = document.querySelector("#qwerty");
     keyboard.addEventListener("click", (event) => {
       const letter = event.target.innerHTML;
- 
+      const element = event.target;
+      //disable the clicked button
+      if (element.disabled == false ) {
+        element.setAttribute("disabled", "");
+      }
       if (this.activePhrase.checkLetter(letter)) {
         this.activePhrase.showMatchedLetter(letter);
         //display letter
+        this.checkForWin();
+        if (this.checkForWin() == true) {
+          console.log("you have won the game");
+        }
       } else {
-        console.log("letter is not matched");
+        this.checkForWin();
+        //remove heart 
+        this.removeLife()
       }
   
     })
   }
 
+  /* check if player has won the game.
+   * returns {boolean} True if player has won 
+  * else returns false */
+
   checkForWin() {
+    const letters = document.querySelectorAll(".letter");
+    const displayedLetters = document.querySelectorAll(".show");
 
+    if (letters.length == displayedLetters.length) {
+      console.log("you have won the game")
+      return true;
+    } else {
+      console.log(`there are still ${letters.length - displayedLetters.length} letters to be found`);
+      return false;
   }
+}
 
+//remove one life from the game
+//increment the missed counter
+//check if the player has lost
   removeLife() {
+    let gameIsOver = false;
+    const heartsFull = document.querySelectorAll('.tries img[src="images/liveHeart.png"]');
+    
+    if (heartsFull !== undefined) {
+      heartsFull[0].setAttribute("src", "images/lostHeart.png");
+    }
+    this.missed ++;
+    if (this.missed >= 5) {
+      gameIsOver = true;
+    
+    }
+    return gameIsOver;
 
   }
 
-  gameOver() {
-
+  //display game is over message
+  gameOver(gameIsOver) {
+    if (gameIsOver) {
+      console.log("game over");
+      //display ending message
+    } else {
+      console.log(this.missed);
+    }
   }
 }
 
