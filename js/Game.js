@@ -31,7 +31,18 @@ class Game {
   }
 
   handleInteraction() {
-    
+    const keyboard = document.querySelector("#qwerty");
+    keyboard.addEventListener("click", (event) => {
+      const letter = event.target.innerHTML;
+ 
+      if (this.activePhrase.checkLetter(letter)) {
+        this.activePhrase.showMatchedLetter(letter);
+        //display letter
+      } else {
+        console.log("letter is not matched");
+      }
+  
+    })
   }
 
   checkForWin() {
@@ -43,7 +54,7 @@ class Game {
   }
 
   gameOver() {
-    
+
   }
 }
 

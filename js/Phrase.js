@@ -23,17 +23,17 @@ class Phrase {
     phraseList.innerHTML = html;
   }
   //check if letter selected by player matches the letters in the phrase
+  //takes one parameter as string 
   checkLetter(letter) {
     if (this.phrase.includes(letter)) {
-      console.log("letter is matched");
       return true;
     } else {
-      console.log("letter was not matched");
       return false;
     }
   }
   
   //display the matched letter to the screen
+  //takes one parameter as string
   showMatchedLetter(letter) {
       //display matched letter on board game
       const letters = document.querySelectorAll(".letter");
