@@ -1,25 +1,23 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
-
-
-
-let game;
+let game = new Game();
 
 const startBtn = document.querySelector("#btn__reset");
+
 startBtn.addEventListener("click",  () => {
-  let game = new Game();
+  //initialise Game Class
+  //let game = new Game();
+  //start game
   game.startGame();
+  //add event listener to keyboard and game logic
   game.handleInteraction();
-  game.activePhrase.checkLetter("a");
-  if (game.activePhrase.checkLetter("a") == true) {
-    game.activePhrase.showMatchedLetter("a");
-  }
+ 
 })
+//reset game testing
+//game.resetGame();
 
 
-
-//phrase.addPhraseToDisplay();
 
 
 

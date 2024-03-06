@@ -32,6 +32,7 @@ class Game {
 
   handleInteraction() {
     const keyboard = document.querySelector("#qwerty");
+      
     keyboard.addEventListener("click", (event) => {
       const letter = event.target.innerHTML;
       const element = event.target;
@@ -39,44 +40,38 @@ class Game {
       if (element.disabled == false ) {
         element.setAttribute("disabled", "");
       }
+      //checks if the chosen letter matches the phrase
+      //displays the letter if it does
       if (this.activePhrase.checkLetter(letter)) {
         this.activePhrase.showMatchedLetter(letter);
         element.classList.add("chosen");
-        //display letter
         this.checkForWin();
-        if (this.checkForWin() == true) {
-          console.log("you have won the game");
-        }
       } else {
-        this.checkForWin();
         //remove heart 
         this.removeLife()
-        //add wrong class to button
+        //add "wrong" class to button
         element.classList.add("wrong");
-  
+        this.checkForWin();
       }
-  
     })
   }
 
   /* check if player has won the game.
-   * returns {boolean} True if player has won 
-  * else returns false */
+  * returns {boolean} True if player has won 
+  * calls the gameOver method if the player has won
+  * else return {boolean} false
+  * */
 
   checkForWin() {
     const letters = document.querySelectorAll(".letter");
     const displayedLetters = document.querySelectorAll(".show");
-
     if (letters.length == displayedLetters.length) {
-      console.log("you have won the game");
       this.gameOver(true);
       return true;
-  
     } else {
-      console.log(`there are still ${letters.length - displayedLetters.length} letters to be found`);
       return false;
   }
-}
+} 
 
 //remove one life from the game
 //increment the missed counter
@@ -110,13 +105,36 @@ class Game {
       overlay.style.display = "flex";
       title.innerHTML = "Congratulations you have won the game!";
     } else {
-      console.log(this.missed);
       overlay.classList.add("lose");
       overlay.classList.remove("start");
       overlay.classList.remove("win");
       overlay.style.display = "flex";
       title.innerHTML = "You have lost the game, try again!";
     }
+    this.resetGame();
+  }
+
+  resetGame() {
+    //remove all li elements from the letters list 
+    const list = document.querySelector("#phrase ul");
+    list.innerHTML = "";
+
+    const buttons = document.querySelectorAll("#qwerty button");
+    //reset keyboard buttons
+    buttons.forEach(button => {
+      button.removeAttribute("disabled");
+      button.classList.remove("chosen");
+      button.classList.remove("wrong");
+    });
+
+    //get hearts 
+    const hearts = document.querySelectorAll("#scoreboard img");
+    //reset full hearts images
+    hearts.forEach(heart => {
+      //reset src attribute to full heart image
+      heart.setAttribute("src", "images/liveHeart.png");
+    });
+   
   }
 }
 

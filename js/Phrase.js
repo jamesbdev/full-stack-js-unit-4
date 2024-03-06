@@ -9,18 +9,19 @@ class Phrase {
   /* Display phrase on game board */
   addPhraseToDisplay() {
     //get the random phrase
-    let html = "";
+    const list = document.createElement("ul");
     const phraseList = document.querySelector("#phrase");
     const letters = this.phrase.split("");
     letters.forEach((letter) => {
       //check if letter is a space or a letter
       if (letter !== " ") {
-        html += `<li class="hide letter">${letter}</li>`;
+        list.innerHTML += `<li class="hide letter">${letter}</li>`;
       } else {
-        html += `<li class="space">${letter}</li>`;
+        list.innerHTML += `<li class="space">${letter}</li>`;
       }
     });
-    phraseList.innerHTML = html;
+    //phraseList.innerHTML = html;
+    phraseList.insertAdjacentElement("afterbegin", list);
   }
   //check if letter selected by player matches the letters in the phrase
   //takes one parameter as string 
