@@ -1,21 +1,32 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
-let game = new Game();
+
 
 const startBtn = document.querySelector("#btn__reset");
+const keyboard = document.querySelector("#qwerty");
 
-startBtn.addEventListener("click",  () => {
-  //initialise Game Class
-  //let game = new Game();
+
+//initialise Game Class
+const game = new Game();
+
+startBtn.addEventListener("click",  (event) => {
   //start game
   game.startGame();
-  //add event listener to keyboard and game logic
-  game.handleInteraction();
- 
 })
-//reset game testing
-//game.resetGame();
+
+keyboard.addEventListener("click", (event) => {
+  if (event.target.tagName.toLowerCase() == "button") {
+    let button = event.target;
+    game.handleInteraction(button);
+  }
+});
+
+
+
+
+
+
 
 
 
