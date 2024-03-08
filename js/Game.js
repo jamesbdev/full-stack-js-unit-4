@@ -3,7 +3,7 @@
  * Game.js */
 
 class Game {
-  constructor(missed, phrases, activePhrase, gameWon) {
+  constructor(missed, phrases, activePhrase) {
     this.missed = 0;
     this.phrases = [
       new Phrase ("Life is a box of chocolates"),
@@ -13,7 +13,7 @@ class Game {
       new Phrase ("full stack javascript")
     ];
     this.activePhrase = null;
-    this.gameWon = false;
+    //this.gameWon = false;
     this.handleInteraction();
   }
 
@@ -23,13 +23,34 @@ class Game {
   }
 
   startGame() {
+    //reset game 
+    //get list element
+    const list = document.querySelector("#phrase ul");
+    //remove all li elements from the letters list 
+    list.innerHTML = "";
+    const buttons = document.querySelectorAll("#qwerty button");
+    //reset keyboard buttons
+    buttons.forEach(button => {
+      button.removeAttribute("disabled");
+      button.classList.remove("chosen");
+      button.classList.remove("wrong");
+    });
+    const hearts = document.querySelectorAll("#scoreboard img");
+    //reset full hearts images
+    hearts.forEach(heart => {
+        //reset src attribute to full heart image
+        heart.setAttribute("src", "images/liveHeart.png");
+      });
+    //reset score  
+    this.missed = 0;
+  
     //hide overlay 
     const overlay = document.getElementById("overlay");
     overlay.style.display = "none";
     //get random phrase and add it to the display
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
-    this.missed = 0;
+    //this.missed = 0;
   }
 
   handleInteraction(button) {
@@ -58,6 +79,7 @@ class Game {
       }
       //check if user has won or lost
       if (this.checkForWin()) {
+
         this.gameOver();
       }
     } 
@@ -72,10 +94,10 @@ class Game {
     const letters = document.querySelectorAll(".letter");
     const displayedLetters = document.querySelectorAll(".show");
     if (letters.length == displayedLetters.length) {
-      this.gameWon = true;
+      console.log("player has won");
       return true;
     } else {
-      this.gameWon = false;
+      console.log("player has not won");
       return false;
   }
 } 
@@ -85,28 +107,33 @@ class Game {
 //check if the player has lost
   removeLife() {
     const heartsFull = document.querySelectorAll('.tries img[src="images/liveHeart.png"]');
-    
+    //removes 1 heart
     if (heartsFull[0] !== undefined) {
       heartsFull[0].setAttribute("src", "images/lostHeart.png");
     }
     //increment missed variable
     this.missed ++;
-
+    console.log("missed", this.missed);
+    //if player has missed more than 5 times, display loose overlay
     if (this.missed >= 5) {
       //show loose screen
       this.gameOver();
     }
-    console.log(this.missed);
+  
   }
 
  //checks if player has won or lost
  //displays the win or loose screen
  //resets game board
   gameOver() {
+    //get overlay screen
     const overlay = document.querySelector("#overlay");
+    //get title
     const title = document.querySelector("#game-over-message");
-    //checks if player has won and displays the win modal
-    if (this.gameWon) {
+    //call checkforWin() and store it in variable
+    const hasWon = this.checkForWin();
+    //check if player has won the game 
+    if (hasWon) {
       //display ending message
       overlay.classList.add("win");
       overlay.classList.remove("lose");
@@ -122,13 +149,14 @@ class Game {
       title.innerHTML = "You have lost the game, try again!";
     }
     //reset the game board
-    this.resetGame();
- 
+   // 
+
   }
 
   resetGame() {
-    //remove all li elements from the letters list 
+    //get list element
     const list = document.querySelector("#phrase ul");
+     //remove all li elements from the letters list 
     list.innerHTML = "";
 
     const buttons = document.querySelectorAll("#qwerty button");
