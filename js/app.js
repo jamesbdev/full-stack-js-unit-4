@@ -7,8 +7,6 @@ const startBtn = document.querySelector("#btn__reset");
 const keyboard = document.querySelector("#qwerty");
 
 
-
-
 startBtn.addEventListener("click",  (event) => {
 
   //initialise Game Class
