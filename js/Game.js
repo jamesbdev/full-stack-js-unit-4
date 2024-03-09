@@ -53,7 +53,6 @@ class Game {
   }
 
   handleInteraction(button) {
-      debugger;
       //disable the clicked button    
       if (button !== undefined) {
         const letter = button.innerHTML;
