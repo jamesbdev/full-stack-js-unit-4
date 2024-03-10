@@ -25,6 +25,7 @@ keyboard.addEventListener("click", (event) => {
 
 const keyboardButtons = keyboard.querySelectorAll("button");
 
+//add event listener to track keyboard input
 window.addEventListener("keydown", (event) => {
   const letter = event.key.toLowerCase();
   const buttons = Array.from(keyboardButtons);
