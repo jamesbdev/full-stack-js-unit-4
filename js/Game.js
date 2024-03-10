@@ -13,7 +13,6 @@ class Game {
       new Phrase ("full stack javascript")
     ];
     this.activePhrase = null;
-    console.log(this.missed);
   }
 
   getRandomPhrase() {
