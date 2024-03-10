@@ -4,23 +4,34 @@
 /* Variables */
 
 :root {
-  --color-win: #78CF82;
-  --color-lose: #D94545;
+  --color-win: #2ECC71;
+  --color-lose: #C0392B;
   --color-start: #5b85b7;
-  --color-neutral: #445069;
+  --color-neutral: #1E824C;
   --color-neutral-light: #D2D2D2;
-  --color-keys: #37474F;
+  --color-keys: #FF6B6B;
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
+
+  /* Squid game colors */
+  --pink-dark: #FF6B6B;
+  --pink-light: #FFC0CB;
+  --green-bright: #2ECC71;
+  --green-dark: #1E824C;
+  --bold-red: #FF0000;
+  --dark-red: #C0392B;
+  --lighter-black: #1C1C1C;
+  --off-white: #F5F5F5;
+
 }
 
 /* main */
 
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 body {
@@ -28,6 +39,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-color: #F5F5F5;
 }
 
 li, ol, ul {
@@ -52,7 +64,7 @@ button {
   padding: .5rem 1rem;
   color: var(--color-keys);
   font-size: var(--font-size-medium);
-  background-color: var(--color-keys-light);
+  background-color: var(--pink-light);
   border-radius: 5px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
@@ -60,9 +72,11 @@ button {
   cursor: pointer;
 }
 
+
 #btn__reset {
 	width: 200px;
 	margin: 0 auto;
+  background-color: #F5F5F5;
 }
 
 .main-container {
@@ -77,6 +91,7 @@ button {
 .section {
   width: 100%;
   padding: 10px;
+
 }
 
 #phrase ul li{
@@ -86,11 +101,17 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: #FF6B6B ;
+  border: 2px dashed #FF6B6B;
+  padding: 1rem;
 }
 
 
 /* Phrase */
+
+#phrase {
+  border: 2px dashed var(--green-bright);
+}
 
 .letter {
   font-size: var(--font-size-medium);
@@ -111,7 +132,7 @@ button {
 
 .show {
   color: #fff;
-  background-color: #4ac0d5;
+  background-color: #1E824C;
   font-size: 20px;
   height: 65px;
   width: 65px;
@@ -131,14 +152,14 @@ button {
 }
 
 .chosen {
-  background: #3a3f58;
+  background: #1C1C1C;
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
 }
 
 .wrong {
-  background: #f7a964;
+  background: #FF0000;
   color: #FFFFFF;
 }
 
@@ -180,7 +201,7 @@ button {
 }
 
 .start {
-  background-color: #3a3f58;
+  background-color: #FFC0CB;
 }
 
 .start a {
@@ -196,7 +217,7 @@ button {
 }
 
 .lose {
-  background-color: #f5785f;
+  background-color: #FF0000;
 }
 
 .lose a {
