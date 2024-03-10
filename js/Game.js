@@ -90,10 +90,8 @@ class Game {
     const letters = document.querySelectorAll(".letter");
     const displayedLetters = document.querySelectorAll(".show");
     if (letters.length == displayedLetters.length) {
-      console.log("player has won");
       return true;
     } else {
-      console.log("player has not won");
       return false;
   }
 } 
@@ -102,7 +100,6 @@ class Game {
 //increment the missed counter
 //check if the player has lost
   removeLife() {
-    console.log(this.missed);
     const heartsFull = document.querySelectorAll('.tries img[src="images/liveHeart.png"]');
     //removes 1 heart
     if (heartsFull[0] !== undefined) {
